@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarang Kumar — Technical Program Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0d12;
+    --bg2: #13161e;
+    --bg3: #1a1e28;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8e6e0;
+    --muted: #7a7870;
+    --accent: #d4a14a;
+    --accent2: #e8bc6e;
+    --accent-dim: rgba(212,161,74,0.12);
+    --teal: #4ab8a0;
+    --teal-dim: rgba(74,184,160,0.1);
+    --radius: 10px;
+    --font-sans: 'Outfit', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(11,13,18,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,161,74,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 880px; }
+
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 30px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent2); }
+
+  .hero-sub {
+    font-size: 1.12rem;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 3rem; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.71rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    background: var(--accent-dim);
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border-radius: var(--radius);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--accent); color: #0b0d12; }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--border2); color: var(--text); background: transparent; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--text);
+  }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    font-size: 1.02rem;
+    line-height: 1.8;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border2); }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  .edu-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .edu-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.85rem 1.1rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .edu-degree { font-size: 0.92rem; font-weight: 500; color: var(--text); }
+  .edu-school { font-size: 0.8rem; color: var(--muted); font-weight: 300; margin-left: auto; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; }
+
+  .experience-list { display: flex; flex-direction: column; position: relative; }
+  .experience-list::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .exp-item { padding: 0 0 3rem 2.5rem; position: relative; }
+  .exp-item:last-child { padding-bottom: 0; }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .exp-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.4rem; flex-wrap: wrap; }
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: 0.71rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .exp-badge {
+    font-size: 0.7rem;
+    padding: 0.18rem 0.6rem;
+    border-radius: 100px;
+    background: var(--teal-dim);
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .exp-role { font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
+  .exp-company { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; font-style: italic; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .exp-bullets li {
+    font-size: 0.93rem;
+    color: var(--muted);
+    padding-left: 1.3rem;
+    position: relative;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.78rem;
+    top: 0.25rem;
+  }
+  .exp-bullets li strong { color: var(--text); font-weight: 500; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.4rem;
+  }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--accent-dim), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+  }
+  .project-card:hover { border-color: rgba(212,161,74,0.28); transform: translateY(-2px); }
+  .project-card:hover::after { opacity: 1; }
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .project-icon {
+    width: 42px; height: 42px;
+    border-radius: 8px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(212,161,74,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+  }
+  .project-arrow { color: var(--muted); font-size: 0.95rem; transition: color 0.2s, transform 0.2s; }
+  .project-card:hover .project-arrow { color: var(--accent); transform: translate(2px, -2px); }
+  .project-origin {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .project-title { font-size: 1.02rem; font-weight: 600; color: var(--text); line-height: 1.35; }
+  .project-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.75; font-weight: 300; flex: 1; }
+  .project-footer { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-top: auto; }
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .thinking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  .thinking-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+  }
+  .thinking-card.highlight {
+    border-color: rgba(212,161,74,0.2);
+    background: linear-gradient(135deg, rgba(212,161,74,0.04), var(--bg2));
+  }
+  .thinking-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .thinking-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; line-height: 1.4; }
+  .thinking-body { font-size: 0.87rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.3rem; }
+  .skill-group {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-item {
+    font-size: 0.8rem;
+    color: var(--text);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 0.28rem 0.7rem;
+    border-radius: 6px;
+    font-weight: 400;
+  }
+
+  .contact-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 5rem 2rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .contact-inner h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+  .contact-inner p {
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  .divider { width: 100%; height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner > * { animation: fadeUp 0.7s ease both; }
+  .hero-label { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-tags { animation-delay: 0.4s; }
+  .hero-cta { animation-delay: 0.5s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .thinking-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">SK / TPM · AI</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Technical Program Manager · AI Systems</div>
+    <h1>Sarang<br>Kumar<em>.</em></h1>
+    <p class="hero-sub">
+      TPM at the intersection of AI research and product engineering. I ship the operational infrastructure — dashboards, automation pipelines, agentic tools — that lets AI teams move faster without breaking things that matter.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">RAG / LLM Systems</span>
+      <span class="tag">Amazon Bedrock</span>
+      <span class="tag">Claude Code + MCP</span>
+      <span class="tag">Agentic AI</span>
+      <span class="tag">Health Tech AI</span>
+      <span class="tag">AI Program Execution</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+      <a href="mailto:sarang3@gmail.com" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="edu-row">
+        <div class="edu-item">
+          <span class="edu-degree">MSE — AI Specialization</span>
+          <span class="edu-school">Schulich · U of Calgary · 2020–2022</span>
+        </div>
+        <div class="edu-item">
+          <span class="edu-degree">MBA</span>
+          <span class="edu-school">Ivey Business School · Western · 2023–2024</span>
+        </div>
+        <div class="edu-item">
+          <span class="edu-degree">BSc Mechanical Engineering</span>
+          <span class="edu-school">Schulich · U of Calgary · 2012–2017</span>
+        </div>
+      </div>
+      <p>I'm a TPM with a foundation that spans <strong>mechanical engineering, an AI-specialized MSE, and an Ivey MBA</strong> — built deliberately to operate across the full stack from research to product to business.</p>
+      <p>At <strong>Aledade</strong>, I'm embedded with an AI research team working on value-based care, driving programs that bring AI models into production: predicting patient mortality, medication adherence, pathology prognosis, and customer churn. I present quarterly OKRs to CPO/CTO/CXO and build internal AI tooling that keeps the team moving at speed.</p>
+      <p>At <strong>Amazon</strong>, I led AUSTIN MRA — an AI-prototyped machine risk assessment tool that delivered <strong>+33% throughput and $600k+ in savings</strong> — and built a RAG-enabled LLM interface on Bedrock that cut SME support requests 25% and onboarding time 40%.</p>
+      <p>I believe the best TPM work in AI isn't just coordination — it's <strong>building the tools that eliminate the coordination tax entirely</strong>.</p>
+    </div>
+    <div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-num">$600k+</span>
+          <span class="stat-label">Savings from AUSTIN MRA AI tool at Amazon</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">40%</span>
+          <span class="stat-label">Onboarding time reduction via RAG/LLM on Bedrock</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">8+</span>
+          <span class="stat-label">Years across engineering, product, and TPM roles</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Industries: energy, mental health, e-commerce, health tech, AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="experience-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <span class="exp-period">OCT 2025 — PRESENT</span>
+        <span class="exp-badge">Current</span>
+      </div>
+      <div class="exp-role">AI Research Technical Program Manager</div>
+      <div class="exp-company">Aledade — Series-F Health Tech · Seattle, WA</div>
+      <ul class="exp-bullets">
+        <li>Report to Sr. Director; drive AI/ML initiatives across Product, AI Research, and Software Engineering.</li>
+        <li>Lead integration of AI Research team to <strong>productionize AI models</strong> predicting patient mortality, medication adherence, pathology prognosis, and customer churn — improving total annualized lives under management.</li>
+        <li>Own and present <strong>Quarterly OKRs</strong> for AI Research to CPO/CTO/CXO in company leadership planning cycles.</li>
+        <li>Building internal AI tooling using Claude Code and MCP: engineering health dashboards, documentation generators, and Slack-integrated reporting pipelines.</li>
+        <li>Designing LLM output validation frameworks — LLM-as-judge, self-critique loops, and SME review checkpoints — for trustworthy AI output in clinical contexts.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <span class="exp-period">MAY 2024 — OCT 2025</span>
+      </div>
+      <div class="exp-role">Senior Program Manager, Product Strategy</div>
+      <div class="exp-company">Amazon.com, Inc. · Seattle, WA</div>
+      <ul class="exp-bullets">
+        <li>Reported to Director (L8); drove product strategy for technical teams across 3 Directors, 10+ L7+ leaders, 800K+ employees across 5 time zones.</li>
+        <li>Led design and launch of <strong>AUSTIN MRA</strong> — AI-prototyped machine risk assessment tool — increasing throughput <strong>+33%</strong> and yielding <strong>$600k+ in savings</strong>.</li>
+        <li>Built <strong>RAG-enabled LLM interface</strong> on Amazon Bedrock integrating 500GB+ proprietary data; reduced SME support requests <strong>25%</strong> and onboarding time <strong>40%</strong> for 80+ person team.</li>
+        <li>Benchmarked Amazon injury rates against 13,500 industry peers on 400,000+ line-item SQL dataset; proposed targeted interventions for highest-risk facilities.</li>
+        <li>Owned 4 VP-audience performance reports; introduced mechanism improving development time 15%.</li>
+        <li>Deployed Smartsheet across 7 teams (500+ employees) for change management, reducing SLA from 7 days to 4 days.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <span class="exp-period">2022 — 2023</span>
+      </div>
+      <div class="exp-role">Product Manager</div>
+      <div class="exp-company">Headversity — B2B Mental Health SaaS · Calgary, AB</div>
+      <ul class="exp-bullets">
+        <li>Reported to COO; owned subscription product roadmap and strategy.</li>
+        <li>Proposed and led 0-to-1 design of bespoke B2B analytics product — <strong>+35% sales, +25% recurring revenue</strong> within 2 months of launch.</li>
+        <li>Delivered mobile BI reporting tool for enterprise clients, increasing user adoption 25% and acquiring 10 new clients.</li>
+        <li>Led team of 9 across North America and Brazil to ship offline mobile streaming for industrial sites — <strong>+30% user engagement</strong>.</li>
+        <li>Company spokesperson at North American Mental Health Sustainability Conference (2,500+ attendees).</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <span class="exp-period">2021 — 2022</span>
+      </div>
+      <div class="exp-role">Software Engineer</div>
+      <div class="exp-company">Pason Systems Inc. — Energy-Tech Automation · Calgary, AB</div>
+      <ul class="exp-bullets">
+        <li>Led 3-person team to build a full-stack ESG dashboard (Django + React) visualizing 4 metrics from a 10,000+ line SQL database; received VP recognition.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <span class="exp-period">2017 — 2020</span>
+      </div>
+      <div class="exp-role">Project Engineer</div>
+      <div class="exp-company">McIntosh Perry — Engineering Strategy Consulting · Calgary, AB</div>
+      <ul class="exp-bullets">
+        <li>Advised clients on $1M–$50M capital project strategy and execution; reported to VP.</li>
+        <li>Designed automated visualization infrastructure in CADWorx/Excel — company-wide adoption, saving <strong>100+ engineer hours/year</strong>.</li>
+        <li>Owned vendor procurement and negotiation; grew vendor base 30%, reduced average contract cost 7%.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🏭</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Amazon · 2024–2025</div>
+      <div class="project-title">AUSTIN MRA — AI Risk Assessment Tool</div>
+      <div class="project-desc">Led design and launch of a machine risk assessment data visualization tool built with AI prototyping. Increased MRA throughput +33%, yielding $600k+ in cost savings. Cross-functional team of mechanical and software engineers from concept through production deployment.</div>
+      <div class="project-footer">
+        <span class="project-tag">AI Prototyping</span>
+        <span class="project-tag">Data Visualization</span>
+        <span class="project-tag">Cross-functional</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🧠</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Amazon · 2024–2025</div>
+      <div class="project-title">RAG-Enabled LLM Interface on Bedrock</div>
+      <div class="project-desc">Built a retrieval-augmented LLM interface integrating 500GB+ of proprietary technical data using Amazon Bedrock. Reduced SME support requests 25% and cut onboarding time 40% for an 80+ person team — compressing institutional knowledge into a self-serve interface.</div>
+      <div class="project-footer">
+        <span class="project-tag">Amazon Bedrock</span>
+        <span class="project-tag">RAG</span>
+        <span class="project-tag">LLM</span>
+        <span class="project-tag">Knowledge Mgmt</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">📊</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Aledade · 2025–2026</div>
+      <div class="project-title">Engineering Health Dashboard</div>
+      <div class="project-desc">Automated dashboard pulling live GitHub and Jira data to surface sprint health, flag epics at risk vs. planned dates, and generate green/amber/red status per work item. Posts weekly digests to a manager Slack channel. Deployed to GitHub Pages to navigate internal infrastructure constraints.</div>
+      <div class="project-footer">
+        <span class="project-tag">GitHub API</span>
+        <span class="project-tag">Jira API</span>
+        <span class="project-tag">Slack Webhooks</span>
+        <span class="project-tag">GitHub Pages</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🤖</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Aledade · 2025–2026</div>
+      <div class="project-title">Risk Research Team Workflow</div>
+      <div class="project-desc">Claude Code generates and maintains living team documentation for an AI risk research team — what the team does, how to engage, member directory, meeting cadence, and domain context. Integrated with CLAUDE.md configuration and Glean MCP for knowledge retrieval. Reduces onboarding friction with zero manual upkeep.</div>
+      <div class="project-footer">
+        <span class="project-tag">Claude Code</span>
+        <span class="project-tag">MCP</span>
+        <span class="project-tag">Glean</span>
+        <span class="project-tag">CLAUDE.md</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🔗</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Aledade · 2025–2026</div>
+      <div class="project-title">Jira Gem</div>
+      <div class="project-desc">Cross-model workflow treating each LLM's strengths as composable: Claude for reasoning and iterative prompt refinement, then the output fed into Google Gemini to build a purpose-built Gem connected to Jira. Shows how TPMs can architect multi-model AI pipelines — each model doing what it does best.</div>
+      <div class="project-footer">
+        <span class="project-tag">Claude</span>
+        <span class="project-tag">Gemini Gems</span>
+        <span class="project-tag">Prompt Engineering</span>
+        <span class="project-tag">Multi-model</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🎙️</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Aledade · 2025–2026</div>
+      <div class="project-title">AI Onboarding Video Pipeline</div>
+      <div class="project-desc">End-to-end pipeline: Claude Code ingests team context and domain knowledge, drafts a structured briefing document, which feeds into NotebookLM to produce an audio/video overview. New hires get an always-current, immersive onboarding experience with zero manual production overhead.</div>
+      <div class="project-footer">
+        <span class="project-tag">Claude Code</span>
+        <span class="project-tag">NotebookLM</span>
+        <span class="project-tag">AI Pipeline</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🔍</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Aledade · 2025–2026</div>
+      <div class="project-title">Leadership Deck Proofreader (Claude Skill)</div>
+      <div class="project-desc">Custom Claude skill that evaluates presentations against a bespoke rubric: narrative clarity, data sourcing, strategic alignment, and slide economy. Encodes institutional quality standards as a reusable AI tool — an applied example of LLM-as-judge in an enterprise governance context.</div>
+      <div class="project-footer">
+        <span class="project-tag">Claude Skills</span>
+        <span class="project-tag">LLM-as-Judge</span>
+        <span class="project-tag">Prompt Engineering</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-top">
+        <div class="project-icon">✅</div>
+        <span class="project-arrow">↗</span>
+      </div>
+      <div class="project-origin">Aledade · 2025–2026</div>
+      <div class="project-title">LLM Output Validation Framework</div>
+      <div class="project-desc">Multi-layered trust system for AI-generated content in health tech: (1) LLM-as-judge — second model evaluates output independently; (2) self-check — original model critiques its own response; (3) SME review loop — domain experts validate before publishing. Addresses the core enterprise AI question: how do you know it's right?</div>
+      <div class="project-footer">
+        <span class="project-tag">LLM-as-Judge</span>
+        <span class="project-tag">AI Trust</span>
+        <span class="project-tag">Health Tech</span>
+        <span class="project-tag">RAG Validation</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="thinking">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>How I Think About AI Programs</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="thinking-grid">
+    <div class="thinking-card highlight">
+      <div class="thinking-label">Open Question 01</div>
+      <div class="thinking-title">How do we know AI output is accurate? How do we trust it?</div>
+      <div class="thinking-body">Three approaches I use: (1) LLM-as-judge — route output to a second model for independent evaluation; (2) self-check — prompt the original model to critique its own response; (3) SME review loop — route domain-specific output to the relevant team before publishing. Trust isn't binary — it's a layered system you design deliberately.</div>
+    </div>
+    <div class="thinking-card highlight">
+      <div class="thinking-label">Open Question 02</div>
+      <div class="thinking-title">How and where do we actually deploy something?</div>
+      <div class="thinking-body">Enterprise tooling constraints are real. I've shipped dashboards to GitHub Pages when internal infrastructure was inaccessible, used Slack as a lightweight deployment surface, and navigated compliance and security review cycles. Knowing how to ship within constraints — not just in an ideal environment — is where real TPM leverage lives.</div>
+    </div>
+    <div class="thinking-card">
+      <div class="thinking-label">Principle 01</div>
+      <div class="thinking-title">AI-to-AI collaboration as a design pattern</div>
+      <div class="thinking-body">The most powerful AI workflows aren't single-model — they're pipelines. I design systems that route tasks to the right model: Claude for reasoning and refinement, Gemini for Google Workspace integration, NotebookLM for audio synthesis. Orchestrating models well is itself a TPM skill, not a research skill.</div>
+    </div>
+    <div class="thinking-card">
+      <div class="thinking-label">Principle 02</div>
+      <div class="thinking-title">Demonstrating AI fluency means shipping AI tools</div>
+      <div class="thinking-body">Anyone can describe what an LLM can do. I'd rather build the dashboard that eliminates the status meeting, the bot that surfaces information before anyone asks, the proofreading skill that encodes institutional standards as code. Operational AI fluency is measured in tools shipped, not frameworks cited.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">GenAI / ML</div>
+      <div class="skill-items">
+        <span class="skill-item">Amazon Bedrock</span>
+        <span class="skill-item">RAG</span>
+        <span class="skill-item">SageMaker AI</span>
+        <span class="skill-item">LangChain</span>
+        <span class="skill-item">Prompt Engineering</span>
+        <span class="skill-item">CoT / ToT / ReAct</span>
+        <span class="skill-item">Claude Code</span>
+        <span class="skill-item">MCP</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Technical</div>
+      <div class="skill-items">
+        <span class="skill-item">Python 3</span>
+        <span class="skill-item">SQL</span>
+        <span class="skill-item">Scikit-Learn</span>
+        <span class="skill-item">Pandas / Seaborn</span>
+        <span class="skill-item">Django / React</span>
+        <span class="skill-item">Tableau</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Program Management</div>
+      <div class="skill-items">
+        <span class="skill-item">OKR Frameworks</span>
+        <span class="skill-item">Agile / Scrum</span>
+        <span class="skill-item">Roadmapping</span>
+        <span class="skill-item">Launch Readiness</span>
+        <span class="skill-item">Executive Reporting</span>
+        <span class="skill-item">Risk Management</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Tools & Platforms</div>
+      <div class="skill-items">
+        <span class="skill-item">Jira / Confluence</span>
+        <span class="skill-item">GitHub Actions</span>
+        <span class="skill-item">Slack API</span>
+        <span class="skill-item">Glean MCP</span>
+        <span class="skill-item">Smartsheet</span>
+        <span class="skill-item">Miro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="hero-label" style="justify-content:center;">Open to the right opportunity</div>
+    <h2>Let's <em>build</em> something.</h2>
+    <p>TPM roles at the frontier of AI — research infrastructure, model deployment, agentic systems. Most interested in teams where the program layer is treated as seriously as the model layer.</p>
+    <div class="contact-links">
+      <a href="mailto:sarang3@gmail.com" class="btn btn-primary">sarang3@gmail.com ↗</a>
+      <a href="https://www.linkedin.com/in/sarang-kumar/" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sarang Kumar · TPM · AI Systems · Seattle, WA · 2026</p>
+</footer>
+
+</body>
+</html>
